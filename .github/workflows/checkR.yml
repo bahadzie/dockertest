@@ -65,11 +65,13 @@ jobs:
 
       - name: Install pak (Unix)
         if: runner.os != 'Windows'
+        id: pak
         run: |
           # Install pak
           cat("::group::Install pak\n")
           dir.create(Sys.getenv("R_LIB_FOR_PAK"), recursive = TRUE, showWarnings = FALSE)
           install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",  .Platform$pkgType,  R.Version()$os,  R.Version()$arch), lib = Sys.getenv("R_LIB_FOR_PAK"))
+          cat("r-version=", R.version.string, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
           cat("::endgroup::\n")
         shell: Rscript {0}
 
@@ -84,9 +86,32 @@ jobs:
       #     cat("::endgroup::\n")
       #   shell: Rscript {0}
 
-      - name: Install RMarkdown
+      - name: Cache R Packages
+        uses: actions/cache@v3
+        id: package-cache
+        with:
+          path: |
+            ${{ env.R_LIBS_USER }}/*
+            !${{ env.R_LIBS_USER }}/pak
+          key: ${{ format('{0}-{1}-{2}', runner.os, steps.pak.outputs.r-version, hashFiles(format('{0}/.github/pkg.lock', inputs.working-directory ))) }}
+          # restore-keys: ${{ steps.install.outputs.os-version }}-${{ steps.install.outputs.r-version }}-${{inputs.cache-version }}-
+
+      - name: Install Dependencies
+        if: steps.package-cache.outputs.cache-hit != 'true'
         run: |
-          pak::pak("any::rmarkdown")
+          # pak::pak("any::rmarkdown")
+          # Install/Update packages
+          cat("::group::Install packages\n")
+          pak::lockfile_create(
+            "any::rmarkdown",
+            lockfile = ".github/pkg.lock"
+          )
+          Sys.setenv("PKGCACHE_HTTP_VERSION" = "2")
+          library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
+          pak::lockfile_install(".github/pkg.lock")
+          ## Clean up lock file
+          unlink(".github/pkg.lock")
+          cat("::endgroup::\n")
         shell: Rscript {0}
 
 
