@@ -1,7 +1,7 @@
 FROM alpine:3.18
 
 # Install from OS and pak (R package manager)
-RUN apk --no-cache add pandoc-cli git R R-dev g++ linux-headers libxml2-dev fontconfig-dev harfbuzz-dev fribidi-dev && \
+RUN apk --no-cache add pandoc-cli git R R-dev g++ linux-headers libxml2-dev fontconfig-dev harfbuzz-dev fribidi-dev freetype-dev libpng-dev tiff-dev libjpeg-turbo-dev && \
     R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",  .Platform$pkgType,  R.Version()$os,  R.Version()$arch))'
 
 # Install R packages
