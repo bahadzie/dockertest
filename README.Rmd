@@ -42,7 +42,7 @@ You can install the development version of _{{ packagename }}_ from
 
 ```{r eval=TRUE}
 # install.packages("pak")
-pak::pak("{{ gh_repo }}")
+pak::pak("bahadzie/numberize")
 library("numberize")
 ```
 
