@@ -1,4 +1,4 @@
-name: ci
+name: Build Docker R image
 
 on:
   workflow_dispatch:
