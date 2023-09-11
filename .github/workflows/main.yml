@@ -33,4 +33,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.6
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.7
