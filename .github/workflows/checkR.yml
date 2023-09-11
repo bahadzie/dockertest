@@ -10,7 +10,39 @@ jobs:
     runs-on: ubuntu-latest
     container: bahadzie/alpine-r-pandoc:4.3.0
     steps:
-      - run: R --version
+      # - run: R --version
+
+      - name: Set site library path
+        run: |
+          # Set site library path
+          cat("::group::Set site library path\n")
+          if (Sys.getenv("RENV_PROJECT") != "") {
+            message("renv project detected, no need to set R_LIBS_SITE")
+            cat(sprintf("R_LIB_FOR_PAK=%s\n", .libPaths()[1]), file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            q("no")
+          }
+          lib <- Sys.getenv("R_LIBS_SITE")
+          if (lib == "") {
+            lib <- file.path(dirname(.Library), "site-library")
+            cat(sprintf("R_LIBS_SITE=%s\n", lib), file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            cat(sprintf("R_LIB_FOR_PAK=%s\n", lib), file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            message("Setting R_LIBS_SITE to ", lib)
+          } else {
+            message("R_LIBS_SITE is already set to ", lib)
+            cat(sprintf("R_LIB_FOR_PAK=%s\n", strsplit(lib, .Platform$path.sep)[[1]][[1]]), file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+          }
+          cat("::endgroup::\n")
+        shell: Rscript {0}
+
+      - name: Install pak (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          # Install pak
+          cat("::group::Install pak\n")
+          dir.create(Sys.getenv("R_LIB_FOR_PAK"), recursive = TRUE, showWarnings = FALSE)
+          install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",  .Platform$pkgType,  R.Version()$os,  R.Version()$arch), lib = Sys.getenv("R_LIB_FOR_PAK"))
+          echo "::endgroup::"
+        shell: Rscript {0}
     # steps:
     #   -
     #     name: Checkout
