@@ -1,0 +1,37 @@
+Package: numberize
+Title: Convert words to numbers in multiple languages
+Version: 0.0.1
+Authors@R: c(
+    person("Avinash", "Laddha", , "avinash@data.org", role = "aut"),
+    person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0001-5782-7330")),
+    person("Jaime A.", "Pavlich-Mariscal", , "jpavlich@javeriana.edu.co", role = "ctb",
+           comment = c(ORCID = "https://orcid.org/0000-0002-3892-6680")),
+    person("Pratik", "Gupte", , "pratik.gupte@lshtm.ac.uk", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0001-5294-7819")),
+    person("Joshua W.", "Lambert", , "joshua.lambert@lshtm.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0001-5218-3046")),
+    person("Hugo", "Gruson", , "hugo.gruson+R@normalesup.org", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0002-4094-1476")),
+    person("Banky", "Ahadzie", , "bahadzie@gmail.com", role = c("aut", "cre"))
+  )
+Description: Converts numbers written as English, French or Spanish words
+    to their equivalent number.  English, French or Spanish words to their
+    equivalent numeric.
+License: MIT + file LICENSE
+URL: https://bahadzie.github.io/numberizeR/index.html,
+    https://github.com/bahadzie/numberizeR
+BugReports: https://github.com/bahadzie/numberizeR/issues
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Encoding: UTF-8
+Language: en-US
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Config/Institution: London School of Hygiene and Tropical Medicine
+Config/Needs/website: epiverse-trace/epiversetheme
+Config/Department: Centre for the Mathematical Modelling of Infectious Diseases
+Config/DepartmentURL: https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases
+Config/Recon: experimental
