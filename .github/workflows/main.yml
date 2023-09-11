@@ -1,9 +1,14 @@
 name: ci
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "main"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -28,4 +33,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.2
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.3
