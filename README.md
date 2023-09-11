@@ -33,7 +33,7 @@ Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling
 at the London School of Hygiene and Tropical Medicine as part of the
 [Epiverse-TRACE program](https://data.org/initiatives/epiverse/).
 
-## Installation README changed
+## Installation NEW IMAGE
 
 You can install the development version of *numberize* from
 [GitHub](https://github.com/) with:
@@ -49,11 +49,11 @@ pak::pak("bahadzie/numberize")
 #> ℹ Getting 1 pkg with unknown size
 #> ✔ Got numberize 0.0.1 (source) (31.39 kB)
 #> ℹ Packaging numberize 0.0.1
-#> ✔ Packaged numberize 0.0.1 (460ms)
+#> ✔ Packaged numberize 0.0.1 (391ms)
 #> ℹ Building numberize 0.0.1
-#> ✔ Built numberize 0.0.1 (1.2s)
-#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (33ms)
-#> ✔ 1 pkg: added 1, dld 1 (NA B) [5.1s]
+#> ✔ Built numberize 0.0.1 (1s)
+#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (31ms)
+#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.7s]
 library("numberize")
 ```
 
