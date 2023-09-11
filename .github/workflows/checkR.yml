@@ -1,7 +1,7 @@
 name: Building Faster R CI
 
 on:
-  # workflow_dispatch:
+  workflow_dispatch:
   #   inputs:
   #     cache:
   #       description: 'A boolean value indicating whether packages should be cached from one to the other'
@@ -34,10 +34,14 @@ on:
     branches:
       - "R-test"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: bahadzie/alpine-r-pandoc:4.3.0.1
+    container: bahadzie/alpine-r-pandoc:4.3.0.4
     steps:
       # - run: R --version
 
