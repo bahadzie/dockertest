@@ -9,6 +9,6 @@ RUN R -q -e 'pak::pak("any::rmarkdown"); pak::cache_clean()'
 RUN R -q -e 'pak::pak("any::pkgdown")'
 
 RUN R -q -e 'pak::pak("any::rcmdcheck")'
-# RUN R -q -e 'pak::pak("any::covr")' 
+RUN R -q -e 'pak::pak("any::covr")' 
 # RUN R -q -e 'pak::pak("any::cffr")' 
 # RUN R -q -e 'pak::pak("any::V8")' 
