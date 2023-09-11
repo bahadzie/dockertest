@@ -3,8 +3,9 @@ FROM alpine:3.18
 # Install R, Pandoc, OS deps and pak package manager
 RUN apk --no-cache add pandoc-cli git R R-dev g++ && \
     R -q -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",  .Platform$pkgType,  R.Version()$os,  R.Version()$arch))'
+# Needed for rcmdcheck, pkgdown
 RUN apk --no-cache add linux-headers
-# All related to pkgdown
+# Needed for pkgdown
 RUN apk --no-cache add libxml2-dev
 RUN apk --no-cache add fontconfig-dev
 RUN apk --no-cache add harfbuzz-dev
