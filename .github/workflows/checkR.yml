@@ -41,7 +41,7 @@ jobs:
           cat("::group::Install pak\n")
           dir.create(Sys.getenv("R_LIB_FOR_PAK"), recursive = TRUE, showWarnings = FALSE)
           install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",  .Platform$pkgType,  R.Version()$os,  R.Version()$arch), lib = Sys.getenv("R_LIB_FOR_PAK"))
-          echo "::endgroup::"
+          cat("::endgroup::\n")
         shell: Rscript {0}
     # steps:
     #   -
