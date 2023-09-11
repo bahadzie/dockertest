@@ -33,4 +33,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.5
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.6
