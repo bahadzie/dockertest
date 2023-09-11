@@ -87,6 +87,7 @@ jobs:
       - name: Install RMarkdown
         run: |
           pak::pak("any::rmarkdown")
+        shell: Rscript {0}
 
 
     # steps:
