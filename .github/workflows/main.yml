@@ -35,4 +35,4 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r-pandoc:4.3.0.11
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/alpine-pandoc-r_430-rcmdcheck:0.0.0
