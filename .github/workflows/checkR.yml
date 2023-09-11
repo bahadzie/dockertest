@@ -3,14 +3,6 @@ name: Building Faster R CI
 on:
   workflow_dispatch:
   #   inputs:
-  #     cache:
-  #       description: 'A boolean value indicating whether packages should be cached from one to the other'
-  #       required: true
-  #       default: true
-  #     cache-version:
-  #       description: 'The version of the cache, change this from the default (1) to start over with a fresh cache. Ignored if cache: false'
-  #       required: true
-  #       default: 1
   #     extra-packages:
   #       description: 'Any extra packages to install outside of the packages listed in the dependencies'
   #     needs:
