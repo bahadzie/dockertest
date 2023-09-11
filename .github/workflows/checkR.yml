@@ -113,6 +113,8 @@ jobs:
       #     unlink(".github/pkg.lock")
       #     cat("::endgroup::\n")
       #   shell: Rscript {0}
+      - name: Checkout repos
+        uses: actions/checkout@v3
 
       - name: Compile the readme
         run: |
