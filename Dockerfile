@@ -9,8 +9,8 @@ RUN apk --no-cache add pandoc-cli git R R-dev g++ && \
 # RUN apk --no-cache add nodejs-current-dev
 # Install R packages
 # RUN R -q -e 'pak::pak("any::rcmdcheck"); pak::cache_clean()'
+# RUN R -q -e 'pak::pak("any::covr"); pak::cache_clean()'
 # RUN R -q -e 'pak::pak("any::rmarkdown"); pak::cache_clean()'
-# RUN R -q -e 'pak::pak("any::pkgdown"); pak::cache_clean()'
-RUN R -q -e 'pak::pak("any::covr"); pak::cache_clean()'
+RUN R -q -e 'pak::pak("any::pkgdown"); pak::cache_clean()'
 # RUN R -q -e 'pak::pak("any::cffr"); pak::cache_clean()'
 # RUN R -q -e 'pak::pak("any::V8"); pak::cache_clean()'
