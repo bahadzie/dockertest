@@ -29,11 +29,11 @@ jobs:
           key: ${{ runner.os }}-dockerimage-1-{{ hashFiles('/tmp/image.tgz') }}
 
       - name: Load saved image
-        run:  docker import /tmp/image.tgz && docker image ls
+        run:  docker import /tmp/image.tgz bahadzie/alpine-r:4.3.0 && docker image ls
 
       - name: test run in container
         run: |
-          docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
+          docker run --rm bahadzie/alpine-r:4.3.0 R --version
 
 
 
