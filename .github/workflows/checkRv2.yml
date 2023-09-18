@@ -39,7 +39,7 @@ jobs:
           ls -al /tmp/image.tgz
 
       - name: Load saved image
-        run: docker load < /tmp/image.tgz
+        run:  unzip /tmp/image.tgz -d /tmp && docker load < /tmp/test_img.tar
       - name: test run in container
         run: |
           docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
