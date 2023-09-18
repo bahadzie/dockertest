@@ -28,10 +28,10 @@ jobs:
           path: /tmp/image.tgz
           key: ${{ runner.os }}-dockerimage-1-{{ hashFiles('/tmp/image.tgz') }}
 
-      - name: Load saved image
-        run:  docker import /tmp/image.tgz bahadzie/alpine-r:4.3.0 && docker image ls
+      - name: Import cached image tar file
+        run:  docker import /tmp/image.tgz bahadzie/alpine-r:4.3.0
 
-      - name: test run in container
+      - name: Compile README.Rmd to README.md
         run: |
           docker run -v $(pwd):$(pwd) -w $(pwd) --rm bahadzie/alpine-r:4.3.0 Rscript -e "writeLines(
             knitr::knit_expand(
@@ -52,43 +52,15 @@ jobs:
             output_dir = \".\"
           )"
 
-
-
-      # - name: List uploaded files
-      #   run: |
-      #     ls -al /tmp/image.tgz
-
-      # - name: Compile the readme
-      #   run: |
-      #     writeLines(
-      #       knitr::knit_expand(
-      #         "README.Rmd",
-      #         packagename = read.dcf("DESCRIPTION", "Package"),
-      #         institution = read.dcf("DESCRIPTION", "Config/Institution"),
-      #         department = read.dcf("DESCRIPTION", "Config/Department"),
-      #         department_url = read.dcf("DESCRIPTION", "Config/DepartmentURL"),
-      #         recon = read.dcf("DESCRIPTION", "Config/Recon"),
-      #         recon_description = read.dcf("DESCRIPTION", "Config/ReconDescription"),
-      #         gh_repo = Sys.getenv("GITHUB_REPOSITORY")
-      #       ),
-      #       "README_expanded.Rmd"
-      #     )
-      #     rmarkdown::render(
-      #       "README_expanded.Rmd",
-      #       output_file = "README.md",
-      #       output_dir = "."
-      #     )
-      #   shell: Rscript {0}
-
-      # - name: Commit files
-        # run: |
-        #   git config --local user.email "action@github.com"
-        #   git config --local user.name "GitHub Action"
-        #   git add README.md
-        #   # Also add README figures if they exist
-        #   if [ -d man/figures ]
-        #   then
-        #     git add man/figures/
-        #   fi
-        #   git diff-index --quiet HEAD || git commit -m "Automatic readme update"
-        #   git push origin R-test || echo "No changes to push"
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          # Also add README figures if they exist
+          if [ -d man/figures ]
+          then
+            git add man/figures/
+          fi
+          git diff-index --quiet HEAD || git commit -m "Automatic readme update"
+          git push origin R-test || echo "No changes to push"
