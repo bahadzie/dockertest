@@ -45,7 +45,7 @@ jobs:
           # platforms: linux/amd64
           platforms: linux/amd64,linux/arm64 # comment out when commenting out QEMU step
           file: ./Dockerfile
-          push: true
+          # push: true
           cache-from: type=gha # for cacheing build layers between builds
           cache-to: type=gha,mode=max # for cacheing build layers between builds
           outputs: type=tar,dest=/tmp/test_img.tar # output a local file that can be cached
@@ -56,7 +56,7 @@ jobs:
         with:
           name: alpine-r430
           path: tmp/test_img.tar
-          
+
       - name: List uploaded files
         run: |
           ls -al /tmp/
