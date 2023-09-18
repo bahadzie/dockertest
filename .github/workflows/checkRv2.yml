@@ -21,12 +21,6 @@ jobs:
       - name: Temp Fix. https://github.com/peter-evans/create-pull-request/issues/1170
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
         
-
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: alpine-r430
-      #     path: /tmp/test_img.tar
-
       - name: Cache Docker Image
         id: cache
         uses: actions/cache@v3
@@ -34,19 +28,12 @@ jobs:
           path: /tmp/image.tgz
           key: ${{ runner.os }}-dockerimage-1-{{ hashFiles('/tmp/image.tgz') }}
 
-      # - name: List uploaded files
-      #   run: |
-      #     ls -l /tmp/image.tgz
-
       - name: Load saved image
-        run:  docker import /tmp/image.tgz
-        # run:  mv /tmp/image.tgz ~ && cd ~ && gunzip -c image.tgz | docker load
-        # run:  pwd && unzip /tmp/image.tgz && ls -lR && docker load < tmp/test_img.tar
-        # run:  unzip /tmp/image.tgz && mv tmp/test_img.tar /tmp  && docker load < tmp/test_img.tar
+        run:  docker import /tmp/image.tgz && docker image ls
 
-      # - name: test run in container
-      #   run: |
-      #     docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
+      - name: test run in container
+        run: |
+          docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
 
 
 
