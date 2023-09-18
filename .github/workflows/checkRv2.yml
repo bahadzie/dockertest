@@ -34,15 +34,23 @@ jobs:
           path: /tmp/image.tgz
           key: ${{ runner.os }}-dockerimage-{{ hashFiles('/tmp/image.tgz') }}
 
-      - name: List uploaded files
-        run: |
-          ls -al /tmp/image.tgz
+      # - name: List uploaded files
+      #   run: |
+      #     ls -l /tmp/image.tgz
 
       - name: Load saved image
-        run:  unzip /tmp/image.tgz && mv tmp/test_img.tar /tmp  && docker load < /tmp/test_img.tar
-      - name: test run in container
-        run: |
-          docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
+        run:  pwd && unzip /tmp/image.tgz && ls -l && echo "TEMP" && ls -l /tmp
+        # run:  unzip /tmp/image.tgz && mv tmp/test_img.tar /tmp  && docker load < /tmp/test_img.tar
+
+      # - name: test run in container
+      #   run: |
+      #     docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
+
+
+
+      # - name: List uploaded files
+      #   run: |
+      #     ls -al /tmp/image.tgz
 
       # - name: Compile the readme
       #   run: |
