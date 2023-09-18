@@ -33,7 +33,7 @@ jobs:
 
       - name: test run in container
         run: |
-          docker run --rm bahadzie/alpine-r:4.3.0 Rscript -e "writeLines(
+          docker run -v $(pwd):$(pwd) -w $(pwd) --rm bahadzie/alpine-r:4.3.0 Rscript -e "writeLines(
             knitr::knit_expand(
               \"README.Rmd\",
               packagename = read.dcf(\"DESCRIPTION\", \"Package\"),
