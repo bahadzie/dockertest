@@ -1,0 +1,69 @@
+name: Building Faster R CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "R-test"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  load-and-test:
+    runs-on: ubuntu-latest
+    # needs: build-image
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v3
+
+      - name: Temp Fix. https://github.com/peter-evans/create-pull-request/issues/1170
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        
+      # TODO Cache image after first download for faster startup
+      - name: Download image from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: alpine-r430
+          path: /tmp
+      - name: Load saved image
+        run: docker load < /tmp/test_img.tar
+      - name: test run in container
+        run: |
+          docker run --rm alpine-r430 echo "Test run successfully!"
+
+      # - name: Compile the readme
+      #   run: |
+      #     writeLines(
+      #       knitr::knit_expand(
+      #         "README.Rmd",
+      #         packagename = read.dcf("DESCRIPTION", "Package"),
+      #         institution = read.dcf("DESCRIPTION", "Config/Institution"),
+      #         department = read.dcf("DESCRIPTION", "Config/Department"),
+      #         department_url = read.dcf("DESCRIPTION", "Config/DepartmentURL"),
+      #         recon = read.dcf("DESCRIPTION", "Config/Recon"),
+      #         recon_description = read.dcf("DESCRIPTION", "Config/ReconDescription"),
+      #         gh_repo = Sys.getenv("GITHUB_REPOSITORY")
+      #       ),
+      #       "README_expanded.Rmd"
+      #     )
+      #     rmarkdown::render(
+      #       "README_expanded.Rmd",
+      #       output_file = "README.md",
+      #       output_dir = "."
+      #     )
+      #   shell: Rscript {0}
+
+      # - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          # Also add README figures if they exist
+          if [ -d man/figures ]
+          then
+            git add man/figures/
+          fi
+          git diff-index --quiet HEAD || git commit -m "Automatic readme update"
+          git push origin R-test || echo "No changes to push"
