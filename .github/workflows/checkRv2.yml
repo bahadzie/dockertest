@@ -27,31 +27,22 @@ jobs:
       #     name: alpine-r430
       #     path: /tmp/test_img.tar
 
-      # - name: List uploaded files
-      #   run: |
-      #     ls -al /tmp/t*
-
-
-
-      # - name: Cache Docker Image
-      #   id: cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: /tmp
-      #     key: ${{ runner.os }}-{{ hashFiles('test_img.tar') }}
-
-      - name: Download image from artifact
-        # if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/download-artifact@v3
+      - name: Cache Docker Image
+        id: cache
+        uses: actions/cache@v3
         with:
-          name: alpine-r430
-          # path: /tmp
+          path: /tmp/image.tgz
+          key: ${{ runner.os }}-dockerimage-{{ hashFiles('/tmp/image.tgz') }}
+
+      - name: List uploaded files
+        run: |
+          ls -al /tmp/image.tgz
 
       - name: Load saved image
-        run: docker load < /tmp/test_img.tar
+        run: docker load < /tmp/image.tgz
       - name: test run in container
         run: |
-          docker run --rm alpine-r430 echo "Test run successfully!"
+          docker run --rm docker run --rm bahadzie/alpine-r:4.3.0 R --version
 
       # - name: Compile the readme
       #   run: |
