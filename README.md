@@ -52,8 +52,8 @@ pak::pak("bahadzie/numberize")
 #> ✔ Packaged numberize 0.0.1 (457ms)
 #> ℹ Building numberize 0.0.1
 #> ✔ Built numberize 0.0.1 (1.2s)
-#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (32ms)
-#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.7s]
+#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (36ms)
+#> ✔ 1 pkg: added 1, dld 1 (NA B) [5.3s]
 library("numberize")
 ```
 
