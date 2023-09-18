@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/image.tgz
-          key: ${{ runner.os }}-dockerimage-{{ hashFiles('/tmp/image.tgz') }}
+          key: ${{ runner.os }}-dockerimage-1-{{ hashFiles('/tmp/image.tgz') }}
 
       # - name: Setup QEMU # Required for build linux/arm64
       #   uses: docker/setup-qemu-action@v3
