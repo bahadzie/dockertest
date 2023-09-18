@@ -48,7 +48,7 @@ jobs:
           # push: true
           cache-from: type=gha # for cacheing build layers between builds
           cache-to: type=gha,mode=max # for cacheing build layers between builds
-          outputs: type=tar,dest=/tmp/test_img/ # output a local file that can be cached
+          outputs: type=local,dest=/tmp/test_img/ # output a local file that can be cached
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r:4.3.0
 
