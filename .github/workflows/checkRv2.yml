@@ -33,7 +33,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: alpine-r430
-          path: /tmp
+          path: /tmp/test_img.tar
 
       - name: Load saved image
         run: docker load < /tmp/test_img.tar
