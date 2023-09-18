@@ -49,11 +49,11 @@ pak::pak("bahadzie/numberize")
 #> ℹ Getting 1 pkg with unknown size
 #> ✔ Got numberize 0.0.1 (source) (31.39 kB)
 #> ℹ Packaging numberize 0.0.1
-#> ✔ Packaged numberize 0.0.1 (388ms)
+#> ✔ Packaged numberize 0.0.1 (457ms)
 #> ℹ Building numberize 0.0.1
-#> ✔ Built numberize 0.0.1 (1.1s)
-#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (29ms)
-#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.1s]
+#> ✔ Built numberize 0.0.1 (1.2s)
+#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (32ms)
+#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.7s]
 library("numberize")
 ```
 
