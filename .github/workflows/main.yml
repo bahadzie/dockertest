@@ -42,21 +42,21 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          # platforms: linux/amd64
-          platforms: linux/amd64,linux/arm64 # comment out when commenting out QEMU step
+          platforms: linux/amd64
+          # platforms: linux/amd64,linux/arm64 # comment out when commenting out QEMU step
           file: ./Dockerfile
           # push: true
           cache-from: type=gha # for cacheing build layers between builds
           cache-to: type=gha,mode=max # for cacheing build layers between builds
-          outputs: type=local,dest=/tmp/test_img/ # output a local file that can be cached
+          outputs: type=tar,dest=/tmp/test_img.tar # output a local file that can be cached
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r:4.3.0
 
       - uses: actions/upload-artifact@v3
         with:
           name: alpine-r430
-          path: tmp/test_img/
+          path: tmp/test_img.tar
 
       - name: List uploaded files
         run: |
-          ls -al /tmp/
+          ls -al /tmp/t*
