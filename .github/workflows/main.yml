@@ -19,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Setup QEMU # Required for build linux/arm64
-      #   uses: docker/setup-qemu-action@v3
+      - name: Setup QEMU # Required for build linux/arm64
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
