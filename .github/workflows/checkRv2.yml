@@ -39,8 +39,8 @@ jobs:
       #     ls -l /tmp/image.tgz
 
       - name: Load saved image
-        run:  pwd && unzip /tmp/image.tgz && ls -l && echo "TEMP" && ls -l /tmp
-        # run:  unzip /tmp/image.tgz && mv tmp/test_img.tar /tmp  && docker load < /tmp/test_img.tar
+        run:  pwd && unzip /tmp/image.tgz && ls -lR && docker load < tmp/test_img.tar
+        # run:  unzip /tmp/image.tgz && mv tmp/test_img.tar /tmp  && docker load < tmp/test_img.tar
 
       # - name: test run in container
       #   run: |
