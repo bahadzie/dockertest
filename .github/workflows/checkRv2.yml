@@ -21,19 +21,31 @@ jobs:
       - name: Temp Fix. https://github.com/peter-evans/create-pull-request/issues/1170
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
         
-      - name: Cache Docker Image
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: /tmp
-          key: ${{ runner.os }}-{{ hashFiles('test_img.tar') }}
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: alpine-r430
+      #     path: /tmp/test_img.tar
+
+      # - name: List uploaded files
+      #   run: |
+      #     ls -al /tmp/t*
+
+
+
+      # - name: Cache Docker Image
+      #   id: cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: /tmp
+      #     key: ${{ runner.os }}-{{ hashFiles('test_img.tar') }}
 
       - name: Download image from artifact
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/download-artifact@v3
         with:
           name: alpine-r430
-          path: /tmp/test_img.tar
+          path: /tmp
 
       - name: Load saved image
         run: docker load < /tmp/test_img.tar
