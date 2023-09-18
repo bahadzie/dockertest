@@ -11,9 +11,9 @@
 
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
-[![R-CMD-check](https://github.com/bahadzie/dockertest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bahadzie/dockertest/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com//actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com//actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/bahadzie/dockertest/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bahadzie/dockertest?branch=main)
+coverage](https://codecov.io/gh//branch/main/graph/badge.svg)](https://app.codecov.io/gh/?branch=main)
 [![lifecycle-experimental](https://www.reconverse.org/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/numberize)](https://CRAN.R-project.org/package=numberize)
@@ -49,11 +49,11 @@ pak::pak("bahadzie/numberize")
 #> ℹ Getting 1 pkg with unknown size
 #> ✔ Got numberize 0.0.1 (source) (31.39 kB)
 #> ℹ Packaging numberize 0.0.1
-#> ✔ Packaged numberize 0.0.1 (391ms)
+#> ✔ Packaged numberize 0.0.1 (388ms)
 #> ℹ Building numberize 0.0.1
-#> ✔ Built numberize 0.0.1 (1s)
-#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (31ms)
-#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.7s]
+#> ✔ Built numberize 0.0.1 (1.1s)
+#> ✔ Installed numberize 0.0.1 (github::bahadzie/numberize@8f0650a) (29ms)
+#> ✔ 1 pkg: added 1, dld 1 (NA B) [4.1s]
 library("numberize")
 ```
 
@@ -109,7 +109,7 @@ software lifecycle](https://www.reconverse.org/lifecycle.html).
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/bahadzie/dockertest/pulls).
+requests](https://github.com//pulls).
 
 ### Code of Conduct
 
