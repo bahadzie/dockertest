@@ -48,15 +48,15 @@ jobs:
           push: true
           cache-from: type=gha # for cacheing build layers between builds
           cache-to: type=gha,mode=max # for cacheing build layers between builds
-          outputs: local,dest=/tmp/test_img/ # output a local file that can be cached
+          outputs: type=tar,dest=/tmp/test_img.tar # output a local file that can be cached
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/alpine-r:4.3.0
 
       - uses: actions/upload-artifact@v3
         with:
           name: alpine-r430
-          path: tmp/test_img/
-
+          path: tmp/test_img.tar
+          
       - name: List uploaded files
         run: |
-          ls -al /tmp/test_img/          
+          ls -al /tmp/
