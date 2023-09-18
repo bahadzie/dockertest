@@ -33,13 +33,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: bahadzie/alpine-pandoc-r_430-pkgdown:0.1.0
+    container: bahadzie/alpine-r:4.3.0
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Temp Fix. https://github.com/peter-evans/create-pull-request/issues/1170
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      # - name: Temp Fix. https://github.com/peter-evans/create-pull-request/issues/1170
+      #   run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
         
 
       - name: Compile the readme
