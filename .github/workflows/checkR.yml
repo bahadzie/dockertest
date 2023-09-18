@@ -24,7 +24,7 @@ on:
   #       default: 'FALSE'
   push:
     branches:
-      - "R-test-pause"
+      - "R-test"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
