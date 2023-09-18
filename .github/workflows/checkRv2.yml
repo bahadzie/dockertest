@@ -33,7 +33,24 @@ jobs:
 
       - name: test run in container
         run: |
-          docker run --rm bahadzie/alpine-r:4.3.0 R --version
+          docker run --rm -v bahadzie/alpine-r:4.3.0 Rscript "writeLines(
+            knitr::knit_expand(
+              \"README.Rmd\",
+              packagename = read.dcf(\"DESCRIPTION\", \"Package\"),
+              institution = read.dcf(\"DESCRIPTION\", \"Config/Institution\"),
+              department = read.dcf(\"DESCRIPTION\", \"Config/Department\"),
+              department_url = read.dcf(\"DESCRIPTION\", \"Config/DepartmentURL\"),
+              recon = read.dcf(\"DESCRIPTION\", \"Config/Recon\"),
+              recon_description = read.dcf(\"DESCRIPTION\", \"Config/ReconDescription\"),
+              gh_repo = Sys.getenv(\"GITHUB_REPOSITORY\")
+            ),
+            \"README_expanded.Rmd\"
+          )
+          rmarkdown::render(
+            \"README_expanded.Rmd\",
+            output_file = \"README.md\",
+            output_dir = \".\"
+          )"
 
 
 
